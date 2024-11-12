@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "614716404710",
+    "project_id": "scaut-a7522",
+    "storage_bucket": "scaut-a7522.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614716404710:android:4ea7db97c2687a8ba11c27",
+        "android_client_info": {
+          "package_name": "com.aicserrock.scaut"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNRz_auD08hW0kY7VjGNi7CKgM_ZJECMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
