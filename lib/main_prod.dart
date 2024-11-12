@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:scaut/app.dart';
+import 'package:scaut/start_app.dart';
+import 'package:scaut/util/flavor.dart';
 
 void main() {
-  runApp(const MyApp(flavor: Flavor.prod));
+  startApp(Flavor.prod);
 }
 
 

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
-enum Flavor {
-  dev,
-  prod,
-}
-
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required Flavor flavor});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
