@@ -1,4 +1,4 @@
-package com.example.scaut
+package com.aicserrock.scaut
 
 import io.flutter.embedding.android.FlutterActivity
 

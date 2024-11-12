@@ -7,6 +7,7 @@ import 'package:scaut/util/flavor.dart';
 Future<void> startApp(Flavor flavor) async {
   runZonedGuarded<void>(() async {
     WidgetsFlutterBinding.ensureInitialized();
+
     runApp(const MyApp());
   }, (error, stackTrace) {});
 }
