@@ -1,4 +1,5 @@
-import 'package:scaut/util/flavor.dart';
+
+import 'package:scaut/common/util/flavor.dart';
 
 import 'start_dev_app.dart';
 
