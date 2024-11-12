@@ -13,7 +13,12 @@ Future<void> startApp(Flavor flavor) async {
     await Firebase.initializeApp(
       options: scaut_prod.DefaultFirebaseOptions.currentPlatform,
     );
-    FirebaseAnalytics.instance.logEvent(name: 'scaut_first_open');
+    FirebaseAnalytics.instance
+      ..logEvent(name: 'scaut_first_open')
+      ..logEvent(
+        name: 'test_event',
+        parameters: {'string': 'hello', 'int': 42},
+      );
     runApp(const MyApp());
   }, (error, stackTrace) {});
 }

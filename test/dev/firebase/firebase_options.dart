@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+            'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -46,16 +49,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyD9yd0EsGqzQO3OqZxysJfOoeutUEnd7nw',
-    appId: '1:283628360445:web:16cff5ff847b7723862494',
-    messagingSenderId: '283628360445',
-    projectId: 'scaut-dev',
-    authDomain: 'scaut-dev.firebaseapp.com',
-    storageBucket: 'scaut-dev.firebasestorage.app',
-    measurementId: 'G-9YE31C0D57',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCCHphQbGOExOBAHr0EenJGl2upg4DgII0',
     appId: '1:283628360445:android:73b0a0a6978542e5862494',
@@ -66,10 +59,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDsmjfHmikjVi8aCgwnOwgL4gMr3IFWuUw',
-    appId: '1:283628360445:ios:0ae4c98d77b79fce862494',
+    appId: '1:283628360445:ios:b9d62e8d27450434862494',
     messagingSenderId: '283628360445',
     projectId: 'scaut-dev',
     storageBucket: 'scaut-dev.firebasestorage.app',
-    iosBundleId: 'com.aicserrock.scaut',
+    iosBundleId: 'com.aicserrock.scaut.dev',
   );
 }

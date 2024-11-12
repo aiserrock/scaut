@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -29,6 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+    FirebaseAnalytics.instance.logEvent(name: 'increase');
     setState(() {
       _counter++;
     });
