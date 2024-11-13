@@ -103,29 +103,29 @@
 			path = RunnerTests;
 			sourceTree = "<group>";
 		};
-		890CDBB52CE3872B0091E0B3 /* config */ = {
+		89D210652CE4608F00064D66 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
-				890CDBB72CE3873C0091E0B3 /* prod */,
-				890CDBB62CE387380091E0B3 /* dev */,
+				89D210672CE460AA00064D66 /* dev */,
+				89D210662CE4609D00064D66 /* prod */,
 			);
-			path = config;
+			path = Firebase;
 			sourceTree = "<group>";
 		};
-		890CDBB62CE387380091E0B3 /* dev */ = {
-			isa = PBXGroup;
-			children = (
-				890CDBB92CE387B20091E0B3 /* GoogleService-Info.plist */,
-			);
-			path = dev;
-			sourceTree = "<group>";
-		};
-		890CDBB72CE3873C0091E0B3 /* prod */ = {
+		89D210662CE4609D00064D66 /* prod */ = {
 			isa = PBXGroup;
 			children = (
 				890CDBB82CE3879E0091E0B3 /* GoogleService-Info.plist */,
 			);
 			path = prod;
+			sourceTree = "<group>";
+		};
+		89D210672CE460AA00064D66 /* dev */ = {
+			isa = PBXGroup;
+			children = (
+				890CDBB92CE387B20091E0B3 /* GoogleService-Info.plist */,
+			);
+			path = dev;
 			sourceTree = "<group>";
 		};
 		9740EEB11CF90186004384FC /* Flutter */ = {
@@ -142,7 +142,6 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
-				890CDBB52CE3872B0091E0B3 /* config */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,
@@ -164,6 +163,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				89D210652CE4608F00064D66 /* Firebase */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -238,6 +238,7 @@
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				3F96C69ABC80728FAE4B2A56 /* [CP] Embed Pods Frameworks */,
+				89D210682CE4656E00064D66 /* Setup Firebase environment */,
 			);
 			buildRules = (
 			);
@@ -344,6 +345,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		89D210682CE4656E00064D66 /* Setup Firebase environment */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Setup Firebase environment";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Название ресурса, который мы копируем\nGOOGLESERVICE_INFO_PLIST=GoogleService-Info.plist\n\n# Получаем ссылки на версии GoogleService-Info.plist для dev и prod\n# ЗАМЕЧАНИЕ: Эти файлы должны существовать только на файловой системе и НЕ должны быть частью цели (так как мы будем добавлять их в цель вручную)\nGOOGLESERVICE_INFO_DEV=${PROJECT_DIR}/${TARGET_NAME}/Firebase/dev/${GOOGLESERVICE_INFO_PLIST}\nGOOGLESERVICE_INFO_PROD=${PROJECT_DIR}/${TARGET_NAME}/Firebase/prod/${GOOGLESERVICE_INFO_PLIST}\n\n# Убедимся, что dev версия GoogleService-Info.plist существует\necho \"Ищу ${GOOGLESERVICE_INFO_PLIST} в ${GOOGLESERVICE_INFO_DEV}\"\nif [ ! -f $GOOGLESERVICE_INFO_DEV ]\nthen\n    echo \"Development GoogleService-Info.plist не найден. Убедитесь, что он находится в правильной директории.\"\n    exit 1\nfi\n\n# Убедимся, что prod версия GoogleService-Info.plist существует\necho \"Ищу ${GOOGLESERVICE_INFO_PLIST} в ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_PROD ]\nthen\n    echo \"Production GoogleService-Info.plist не найден. Убедитесь, что он находится в правильной директории.\"\n    exit 1\nfi\n\n# Ссылка на место назначения для GoogleService-Info.plist\nPLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\necho \"Скопирую ${GOOGLESERVICE_INFO_PLIST} в конечный пункт назначения: ${PLIST_DESTINATION}\"\n\n# Копируем prod версию GoogleService-Info.plist для Release сборок\nif [[ \"${CONFIGURATION}\" == *-prod ]]\nthen\n    echo \"Использую ${GOOGLESERVICE_INFO_PROD}\"\n    cp \"${GOOGLESERVICE_INFO_PROD}\" \"${PLIST_DESTINATION}\"\nelif [[ \"${CONFIGURATION}\" == *-dev ]]\nthen\n    echo \"Использую ${GOOGLESERVICE_INFO_DEV}\"\n    cp \"${GOOGLESERVICE_INFO_DEV}\" \"${PLIST_DESTINATION}\"\nelse\n    echo \"Конфигурация не была распознана. Использование стандартного GoogleService-Info.plist\"\nfi\n";
 		};
 		9740EEB61CF901F6004384FC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -637,7 +657,7 @@
 		};
 		890CDBAA2CE3797E0091E0B3 /* Debug-dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABF5DDA92F015E4615EBEDA5 /* Pods-Runner.debug-dev.xcconfig */;
+			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -972,7 +992,7 @@
 		};
 		97C147061CF9000F007C117D /* Debug-prod */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2FC9A7D130C087BD20BAFC3 /* Pods-Runner.debug-prod.xcconfig */;
+			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
